@@ -11,7 +11,7 @@ const execComand = (res, command) => {
 			console.error(`Child process failed with error code ${err.code}\nStderr: ${stderr}`);
 		} else {
 			res.writeHead(200, { 'Content-Type': 'application/json' });
-			res.write(String(stdout));
+			res.write(JSON.stringify({ 'Battery life': stdout }));
 			res.end();
 		}
 	});
