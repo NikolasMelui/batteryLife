@@ -5,23 +5,18 @@ const config = {
 	port: Number(process.argv[2]) || 3000,
 };
 
-const execComand = data => {
-	child_process.exec('pmset -g batt | egrep "([0-9]+%).*" -o', (err, stdout, stderr) => {
+const execComand = (res, command) => {
+	child_process.exec(command, (err, stdout, stderr) => {
 		if (err) {
-			console.error(`Child process failed with error code ${err.code}`);
+			console.error(`Child process failed with error code ${err.code}\nStderr: ${stderr}`);
 		} else {
-			console.log(`Stdout: ${stdout}`);
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+			res.write(String(stdout));
+			res.end();
 		}
 	});
 };
 
 http.createServer((req, res) => {
-	const reqUrl = req.url;
-
-	console.log(reqUrl);
-	console.log(execComand());
-
-	res.writeHead(200, { 'Content-Type': 'application/json' });
-	res.write(JSON.stringify({ hello: 'world' }));
-	res.end();
+	execComand(res, 'pmset -g batt | egrep "([0-9]+%).*" -o');
 }).listen(config.port, () => global.console.log(`Server is listening on port ${config.port}`));
