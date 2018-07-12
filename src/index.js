@@ -1,7 +1,7 @@
 import http from 'http';
 
 const config = {
-	port: Number(process.argv[2]) || 8080,
+	port: Number(process.argv[2]) || 3000,
 };
 
 http.createServer((req, res) => {
