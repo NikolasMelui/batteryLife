@@ -5,7 +5,9 @@ const config = {
 };
 
 http.createServer((req, res) => {
-	global.console.log(req.url);
-	res.writeHead(200, 'OK', { 'Content-Type': 'text/plain' });
-	res.end(`Hello from port: ${config.port} and welcome to multikey-node-boilerplate!`);
+	const reqUrl = req.url;
+	console.log(reqUrl);
+	res.writeHead(200, { 'Content-Type': 'application/json' });
+	res.write(JSON.stringify({ hello: 'world' }));
+	res.end();
 }).listen(config.port, () => global.console.log(`Server is listening on port ${config.port}`));
