@@ -1,8 +1,8 @@
 {
-	"name": "multikey-nodejs-boilerplate",
-	"version": "2.0.0",
+	"name": "battery-life",
+	"version": "0.0.1",
 	"main": "index.js",
-	"repository": "git@github.com:NikolasMelui/multikey-nodejs-boilerplate.git",
+	"repository": "git@github.com:NikolasMelui/batterylife.git",
 	"author": "NikolasMelui <slak@samaradom.ru>",
 	"license": "MIT",
 	"private": true,
